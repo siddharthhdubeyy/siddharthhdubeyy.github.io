@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Siddharth Dubey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Epilogue:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --bg2: #f9f9f8;
+      --border: #e8e8e5;
+      --text: #111110;
+      --muted: #888884;
+      --subtle: #c4c4c0;
+      --serif: 'Fraunces', Georgia, serif;
+      --sans: 'Epilogue', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 40px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* LAYOUT */
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* HERO */
+    .hero {
+      padding-top: 160px;
+      padding-bottom: 100px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+      opacity: 0;
+      animation: appear 0.8s ease forwards 0.05s;
+    }
+
+    .hero-tag {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(48px, 6vw, 76px);
+      font-weight: 300;
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    h1 .italic {
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .hero-right { padding-bottom: 8px; }
+
+    .hero-desc {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 36px;
+    }
+
+    .hero-links { display: flex; gap: 8px; }
+
+    .pill {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 9px 18px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: all 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .pill-dark { background: var(--text); color: #fff; }
+    .pill-dark:hover { background: #333; }
+
+    .pill-outline {
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .pill-outline:hover { border-color: #aaa; color: var(--text); }
+
+    /* RULE */
+    hr { border: none; border-top: 1px solid var(--border); }
+
+    /* SECTION */
+    section {
+      padding: 88px 0;
+      opacity: 0;
+      animation: appear 0.7s ease forwards;
+    }
+    section:nth-of-type(1) { animation-delay: 0.2s; }
+    section:nth-of-type(2) { animation-delay: 0.3s; }
+    section:nth-of-type(3) { animation-delay: 0.4s; }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 40px;
+      margin-bottom: 56px;
+    }
+
+    .section-num {
+      font-size: 12px;
+      color: var(--subtle);
+      letter-spacing: 0.1em;
+      padding-top: 6px;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: 36px;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    /* ABOUT */
+    .two-col {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 40px;
+    }
+
+    .about-text p {
+      font-size: 16px;
+      font-weight: 300;
+      color: #444;
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .pullquote {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin: 32px 0;
+    }
+
+    /* STACK */
+    .stack-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .stack-cell {
+      background: var(--bg);
+      padding: 24px 28px;
+      transition: background 0.15s;
+    }
+    .stack-cell:hover { background: var(--bg2); }
+
+    .stack-cell-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--subtle);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .stack-cell-val {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* CONNECT */
+    .connect-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .connect-card {
+      text-decoration: none;
+      padding: 24px;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .connect-card:hover { border-color: #bbb; background: var(--bg2); }
+
+    .connect-card-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--subtle);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .connect-card-name {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .connect-card-arrow {
+      font-size: 18px;
+      color: var(--subtle);
+      align-self: flex-end;
+      transition: color 0.15s, transform 0.15s;
+    }
+    .connect-card:hover .connect-card-arrow { color: var(--text); transform: translate(2px,-2px); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-left {
+      font-family: var(--serif);
+      font-size: 13px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--subtle);
+    }
+
+    .footer-right {
+      font-size: 12px;
+      color: var(--subtle);
+      letter-spacing: 0.04em;
+    }
+
+    /* ANIM */
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* MOBILE */
+    @media (max-width: 680px) {
+      .page, .nav-inner { padding-left: 20px; padding-right: 20px; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        padding-top: 100px;
+        padding-bottom: 64px;
+      }
+
+      .section-header, .two-col { grid-template-columns: 1fr; gap: 16px; }
+      .stack-cols { grid-template-columns: repeat(2, 1fr); }
+      .connect-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Siddharth Dubey</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#stack">Stack</a></li>
+      <li><a href="#connect">Connect</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page">
+
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">AI Engineer · India</div>
+      <h1>Building<br>with <span class="italic">intelligence.</span></h1>
+    </div>
+    <div class="hero-right">
+      <p class="hero-desc">I work deep in the AI stack — LLMs, agents, RAG systems. Started at 11, freelancing at 14, still going. I ship things and learn fast.</p>
+      <div class="hero-links">
+        <a href="https://www.linkedin.com/in/siddharth-dubey-610a65261/" target="_blank" class="pill pill-dark">LinkedIn ↗</a>
+        <a href="https://github.com/siddharthhdubeyy" target="_blank" class="pill pill-outline">GitHub ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  <section id="about">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <h2>About me</h2>
+    </div>
+    <div class="two-col">
+      <div></div>
+      <div class="about-text">
+        <p>It started with a random Python tutorial on YouTube when I was 11. What began as curiosity grew into something I couldn't put down — the architecture of intelligent systems, how machines reason, how language and logic intersect at scale.</p>
+
+        <div class="pullquote">
+          "Software is ultimately an abstraction of mathematics — patterns, logic, and structure brought to life."
+        </div>
+
+        <p>I've been freelancing since I was 14 — building AI-powered chatbots, automation workflows, and tools for real clients. I don't wait to be fully prepared. I build, I learn, I iterate.</p>
+        <p>Beyond the technical side, I'm drawn to mathematics and content — writing and explaining the ideas I'm working through. AI isn't a trend to me. It's the most interesting engineering problem of our time.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <section id="stack">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <h2>What I work with</h2>
+    </div>
+    <div class="two-col">
+      <div></div>
+      <div class="stack-cols">
+        <div class="stack-cell">
+          <div class="stack-cell-label">Core</div>
+          <div class="stack-cell-val">LLMs &amp; Agentic AI</div>
+        </div>
+        <div class="stack-cell">
+          <div class="stack-cell-label">Architecture</div>
+          <div class="stack-cell-val">RAG Systems</div>
+        </div>
+        <div class="stack-cell">
+          <div class="stack-cell-label">Languages</div>
+          <div class="stack-cell-val">Python, JavaScript</div>
+        </div>
+        <div class="stack-cell">
+          <div class="stack-cell-label">Runtime</div>
+          <div class="stack-cell-val">Node.js</div>
+        </div>
+        <div class="stack-cell">
+          <div class="stack-cell-label">APIs</div>
+          <div class="stack-cell-val">Claude, OpenAI, REST</div>
+        </div>
+        <div class="stack-cell">
+          <div class="stack-cell-label">Tooling</div>
+          <div class="stack-cell-val">n8n, LangChain</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <section id="connect">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <h2>Find me</h2>
+    </div>
+    <div class="two-col">
+      <div></div>
+      <div class="connect-cards">
+        <a href="https://www.linkedin.com/in/siddharth-dubey-610a65261/" target="_blank" class="connect-card">
+          <div class="connect-card-label">LinkedIn</div>
+          <div class="connect-card-name">@siddharth&#8209;dubey</div>
+          <div class="connect-card-arrow">↗</div>
+        </a>
+        <a href="https://github.com/siddharthhdubeyy" target="_blank" class="connect-card">
+          <div class="connect-card-label">GitHub</div>
+          <div class="connect-card-name">@siddharthh&#8209;dubeyy</div>
+          <div class="connect-card-arrow">↗</div>
+        </a>
+        <a href="mailto:siddharthdubey2023@gmail.com" class="connect-card">
+          <div class="connect-card-label">Email</div>
+          <div class="connect-card-name">Say hello</div>
+          <div class="connect-card-arrow">↗</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-left">Siddharth Dubey</span>
+    <span class="footer-right">Build · Code · Deploy</span>
+  </footer>
+
+</div>
+</body>
+</html>
